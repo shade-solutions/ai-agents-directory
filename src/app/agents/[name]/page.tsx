@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Tag, Users, Globe, Calendar, DollarSign } from 'lucide-react';
-import { Button, Card, CardContent, CardHeader, CardTitle, Badge, FavoriteButton } from '@/components/ui';
+import { Button, Card, CardContent, CardHeader, CardTitle, Badge, FavoriteButton, Favicon } from '@/components/ui';
 import { getAgentByName } from '@/utils/data';
 import { Metadata } from 'next';
 
@@ -77,11 +77,19 @@ export default async function AgentPage({ params }: AgentPageProps) {
       <div className="space-y-6">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
           <div className="space-y-4 flex-1">
-            <div className="space-y-2">
-              <h1 className="text-4xl font-bold">{agent.detailed_title || agent.name}</h1>
-              <p className="text-xl text-muted-foreground">
-                {agent.meta_description || agent.description || formatTitle(agent.title)}
-              </p>
+            <div className="flex items-start gap-4">
+              <Favicon 
+                url={agent.url} 
+                name={agent.name}
+                size={64}
+                className="flex-shrink-0 mt-2"
+              />
+              <div className="space-y-2 flex-1 min-w-0">
+                <h1 className="text-4xl font-bold">{agent.detailed_title || agent.name}</h1>
+                <p className="text-xl text-muted-foreground">
+                  {agent.meta_description || agent.description || formatTitle(agent.title)}
+                </p>
+              </div>
             </div>
 
             {/* Categories */}

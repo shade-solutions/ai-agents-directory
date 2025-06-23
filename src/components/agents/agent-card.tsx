@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ExternalLink, Tag } from 'lucide-react';
 import { AIAgent } from '@/types';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, Badge, Button, FavoriteButton } from '@/components/ui';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, Badge, Button, FavoriteButton, Favicon } from '@/components/ui';
 
 interface AgentCardProps {
   agent: AIAgent;
@@ -36,9 +36,17 @@ export function AgentCard({ agent, showTags = true, showDescription = true }: Ag
     <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-200 animate-fade-in">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
-          <CardTitle className="text-lg font-semibold line-clamp-2 flex-1">
-            {agent.detailed_title || agent.name}
-          </CardTitle>
+          <div className="flex items-start gap-3 flex-1 min-w-0">
+            <Favicon 
+              url={agent.url} 
+              name={agent.name}
+              size={40}
+              className="flex-shrink-0 mt-1"
+            />
+            <CardTitle className="text-lg font-semibold line-clamp-2 flex-1">
+              {agent.detailed_title || agent.name}
+            </CardTitle>
+          </div>
           <div className="flex items-center gap-2 flex-shrink-0">
             <FavoriteButton 
               agentName={agent.name} 
