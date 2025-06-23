@@ -1,103 +1,161 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { ArrowRight, Bot, Search, Filter, Star } from 'lucide-react';
+import { Button, Card, CardContent, CardHeader, CardTitle, Badge } from '@/components/ui';
+import { AgentsGrid } from '@/components/agents';
+import { getAllCategories, getFeaturedAgents, getPopularCategories } from '@/utils/data';
 
-export default function Home() {
+export default function HomePage() {
+  const featuredAgents = getFeaturedAgents(6);
+  const popularCategories = getPopularCategories(8);
+  const totalAgents = getAllCategories().reduce((sum, cat) => sum + cat.count, 0);
+  const totalCategories = getAllCategories().length;
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="space-y-16">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-b from-primary/5 to-background">
+        <div className="container text-center space-y-8">
+          <div className="space-y-4">
+            <div className="flex justify-center">
+              <Badge variant="secondary" className="text-sm px-4 py-2">
+                🚀 Discover the Future of AI
+              </Badge>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+              Find the Perfect{' '}
+              <span className="text-primary">AI Agent</span>
+              <br />
+              for Your Needs
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Explore our curated directory of {totalAgents}+ AI agents across {totalCategories} categories. 
+              From productivity tools to coding assistants, find the AI solution that transforms your workflow.
+            </p>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/agents">
+              <Button size="lg" className="text-lg px-8">
+                <Search className="mr-2 h-5 w-5" />
+                Explore All Agents
+              </Button>
+            </Link>
+            <Link href="/categories">
+              <Button variant="outline" size="lg" className="text-lg px-8">
+                <Filter className="mr-2 h-5 w-5" />
+                Browse Categories
+              </Button>
+            </Link>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto pt-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">{totalAgents}+</div>
+              <div className="text-sm text-muted-foreground">AI Agents</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">{totalCategories}</div>
+              <div className="text-sm text-muted-foreground">Categories</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">Free</div>
+              <div className="text-sm text-muted-foreground">Always Free</div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Featured Agents */}
+      <section className="container space-y-8">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-bold">Featured AI Agents</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Handpicked agents with detailed information and proven capabilities
+          </p>
+        </div>
+
+        <AgentsGrid agents={featuredAgents} />
+
+        <div className="text-center">
+          <Link href="/agents">
+            <Button variant="outline" size="lg">
+              View All Agents
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Popular Categories */}
+      <section className="bg-muted/50 py-16">
+        <div className="container space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold">Popular Categories</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Discover AI agents organized by their primary use cases and industries
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {popularCategories.map((category) => (
+              <Link key={category.name} href={`/categories/${category.name}`}>
+                <Card className="h-full hover:shadow-lg transition-all duration-200 hover:scale-105">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg flex items-center justify-between">
+                      <span className="line-clamp-1">
+                        {category.title.split(/\d+/)[0].trim() || category.name.replace('-', ' ')}
+                      </span>
+                      <Badge variant="secondary" className="ml-2">
+                        {category.count}
+                      </Badge>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      {category.title.includes('tools') 
+                        ? category.title.split('tools')[1]?.trim() || 'Explore tools in this category'
+                        : 'Discover amazing AI agents in this category'
+                      }
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="/categories">
+              <Button variant="outline" size="lg">
+                View All Categories
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="container py-16">
+        <Card className="bg-primary text-primary-foreground">
+          <CardContent className="p-12 text-center space-y-6">
+            <Bot className="h-16 w-16 mx-auto opacity-90" />
+            <h2 className="text-3xl font-bold">Ready to Transform Your Workflow?</h2>
+            <p className="text-lg opacity-90 max-w-2xl mx-auto">
+              Join thousands of users who have already discovered their perfect AI agent. 
+              Start exploring our directory and find tools that will revolutionize how you work.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Link href="/agents">
+                <Button variant="secondary" size="lg" className="text-lg px-8">
+                  <Star className="mr-2 h-5 w-5" />
+                  Start Exploring
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
     </div>
   );
 }
