@@ -1,27 +1,27 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents-directory.com';
-  
-  return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: [
-          '/api/',
-          '/_next/',
-          '/admin/',
-          '/private/',
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents.30tools.com';
+
+    return {
+        rules: [
+            {
+                userAgent: '*',
+                allow: '/',
+                disallow: [
+                    '/api/',
+                    '/_next/',
+                    '/admin/',
+                    '/private/',
+                ],
+            },
+            {
+                userAgent: 'Googlebot',
+                allow: '/',
+                disallow: '/api/',
+            },
         ],
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: '/api/',
-      },
-    ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
-  };
+        sitemap: `${baseUrl}/sitemap.xml`,
+        host: baseUrl,
+    };
 }

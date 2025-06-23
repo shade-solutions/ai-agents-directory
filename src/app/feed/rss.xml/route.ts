@@ -1,15 +1,15 @@
 import { getAllAgents } from '@/utils/data';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents-directory.com';
-  const agents = getAllAgents();
-  
-  // Get the most recent 50 agents for the feed
-  const recentAgents = agents
-    .sort((a, b) => a.name.localeCompare(b.name))
-    .slice(0, 50);
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents.30tools.com';
+    const agents = getAllAgents();
 
-  const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+    // Get the most recent 50 agents for the feed
+    const recentAgents = agents
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .slice(0, 50);
+
+    const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AI Agents Directory</title>
@@ -27,8 +27,8 @@ export async function GET() {
     <ttl>1440</ttl>
     
     ${recentAgents
-      .map(
-        (agent) => `
+            .map(
+                (agent) => `
     <item>
       <title><![CDATA[${agent.detailed_title || agent.name}]]></title>
       <description><![CDATA[${agent.meta_description || agent.description || agent.title}]]></description>
@@ -39,15 +39,15 @@ export async function GET() {
       <author>AI Agents Directory</author>
       ${agent.categories?.map(cat => `<category><![CDATA[${cat}]]></category>`).join('') || ''}
     </item>`
-      )
-      .join('')}
+            )
+            .join('')}
   </channel>
 </rss>`;
 
-  return new Response(rssXml, {
-    headers: {
-      'Content-Type': 'application/rss+xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
-    },
-  });
+    return new Response(rssXml, {
+        headers: {
+            'Content-Type': 'application/rss+xml; charset=utf-8',
+            'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+        },
+    });
 }

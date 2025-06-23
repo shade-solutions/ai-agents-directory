@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents-directory.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents.30tools.com'),
   alternates: {
     canonical: '/',
     types: {
@@ -71,8 +71,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents-directory.com';
-  
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents.30tools.com';
+
   const websiteStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
