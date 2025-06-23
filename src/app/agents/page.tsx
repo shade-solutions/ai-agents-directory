@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Search, Filter, SlidersHorizontal } from 'lucide-react';
-import { Button, Input, Badge, Card, CardContent } from '@/components/ui';
+import { Search, SlidersHorizontal } from 'lucide-react';
+import { Button, Input, Badge, Card } from '@/components/ui';
 import { AgentsGrid } from '@/components/agents';
 import { getAllAgents, getAllCategories, filterAgentsByPricing, filterAgentsByCategory, searchAgents, sortAgents } from '@/utils/data';
 import { PRICING_OPTIONS, SORT_OPTIONS } from '@/constants';

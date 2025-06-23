@@ -69,8 +69,7 @@ export default function FavoritesPage() {
       {favoriteAgents.length > 0 ? (
         <div className="space-y-6">
           <AgentsGrid 
-            agents={favoriteAgents} 
-            showLoadMore={false}
+            agents={favoriteAgents}
           />
         </div>
       ) : (

@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 
-export const runtime = 'edge';
+// Removed edge runtime for compatibility with OpenNext Cloudflare
 
 export async function GET(request: NextRequest) {
   try {
@@ -46,8 +46,10 @@ export async function GET(request: NextRequest) {
         'Cache-Control': 'public, max-age=86400, stale-while-revalidate=604800',
       },
     });
-  } catch (e: any) {
-    console.log(`${e.message}`);
+  } catch (e: unknown) {
+    const errorMessage = e instanceof Error ? e.message : 'Unknown error';
+    // eslint-disable-next-line no-console
+    console.log(`OpenGraph error: ${errorMessage}`);
     return new Response(`Failed to generate the image`, {
       status: 500,
     });

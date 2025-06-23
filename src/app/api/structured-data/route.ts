@@ -51,11 +51,10 @@ export async function GET(request: NextRequest) {
             };
             break;
 
-        case 'catalog':
-            const agents = getAllAgents();
-            const categories = getAllCategories();
-
-            structuredData = {
+    case 'catalog':
+      const agents = getAllAgents();
+      
+      structuredData = {
                 '@context': 'https://schema.org',
                 '@type': 'ItemList',
                 name: 'AI Agents Directory',

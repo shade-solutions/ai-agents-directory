@@ -49,19 +49,20 @@ export function PlausibleAnalytics(): React.ReactElement | null {
 }
 
 // Simple custom event tracking
-export function trackEvent(eventName: string, eventData?: Record<string, any>): void {
+export function trackEvent(eventName: string, eventData?: Record<string, string | number | boolean>): void {
   // Google Analytics
   if (typeof window !== 'undefined' && 'gtag' in window) {
-    (window as any).gtag('event', eventName, eventData);
+    (window as { gtag?: (...args: unknown[]) => void }).gtag?.('event', eventName, eventData);
   }
   
   // Plausible Analytics
   if (typeof window !== 'undefined' && 'plausible' in window) {
-    (window as any).plausible(eventName, { props: eventData });
+    (window as { plausible?: (event: string, options?: { props?: Record<string, string | number | boolean> }) => void }).plausible?.(eventName, { props: eventData });
   }
   
   // Console log for development
   if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line no-console
     console.log('Analytics Event:', eventName, eventData);
   }
 }
