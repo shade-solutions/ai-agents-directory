@@ -1,18 +1,19 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Tag, Users, Globe, Calendar, DollarSign } from 'lucide-react';
-import { Button, Card, CardContent, CardHeader, CardTitle, Badge } from '@/components/ui';
+import { Button, Card, CardContent, CardHeader, CardTitle, Badge, FavoriteButton } from '@/components/ui';
 import { getAgentByName } from '@/utils/data';
 import { Metadata } from 'next';
 
 interface AgentPageProps {
-  params: {
+  params: Promise<{
     name: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: AgentPageProps): Promise<Metadata> {
-  const agent = getAgentByName(params.name);
+  const { name } = await params;
+  const agent = getAgentByName(name);
   
   if (!agent) {
     return {
@@ -31,8 +32,9 @@ export async function generateMetadata({ params }: AgentPageProps): Promise<Meta
   };
 }
 
-export default function AgentPage({ params }: AgentPageProps) {
-  const agent = getAgentByName(params.name);
+export default async function AgentPage({ params }: AgentPageProps) {
+  const { name } = await params;
+  const agent = getAgentByName(name);
 
   if (!agent) {
     notFound();
@@ -83,15 +85,17 @@ export default function AgentPage({ params }: AgentPageProps) {
             </div>
 
             {/* Categories */}
-            <div className="flex flex-wrap gap-2">
-              {agent.categories.map((category) => (
-                <Link key={category} href={`/categories/${category.toLowerCase().replace(/\s+/g, '-')}`}>
-                  <Badge variant="outline" className="hover:bg-accent cursor-pointer">
-                    {category}
-                  </Badge>
-                </Link>
-              ))}
-            </div>
+            {agent.categories && agent.categories.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {agent.categories.map((category) => (
+                  <Link key={category} href={`/categories/${category.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <Badge variant="outline" className="hover:bg-accent cursor-pointer">
+                      {category}
+                    </Badge>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Pricing and Actions */}
@@ -132,6 +136,16 @@ export default function AgentPage({ params }: AgentPageProps) {
                     })}
                   </div>
                 )}
+
+                <div className="pt-2 border-t">
+                  <FavoriteButton 
+                    agentName={agent.name} 
+                    variant="outline" 
+                    size="default"
+                    className="w-full"
+                    showText={true}
+                  />
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -233,7 +247,7 @@ export default function AgentPage({ params }: AgentPageProps) {
               <div className="flex items-center gap-3">
                 <Users className="h-4 w-4 text-muted-foreground" />
                 <span className="text-sm">
-                  <strong>Categories:</strong> {agent.categories.length}
+                  <strong>Categories:</strong> {agent.categories?.length || 0}
                 </span>
               </div>
 
@@ -260,7 +274,7 @@ export default function AgentPage({ params }: AgentPageProps) {
                 </Button>
               </Link>
               
-              {agent.categories.length > 0 && (
+              {agent.categories && agent.categories.length > 0 && (
                 <Link href={`/categories/${agent.categories[0].toLowerCase().replace(/\s+/g, '-')}`}>
                   <Button variant="outline" className="w-full">
                     View {agent.categories[0]} Category

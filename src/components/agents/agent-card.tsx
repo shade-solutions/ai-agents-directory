@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ExternalLink, Tag } from 'lucide-react';
 import { AIAgent } from '@/types';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, Badge, Button } from '@/components/ui';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, Badge, Button, FavoriteButton } from '@/components/ui';
 
 interface AgentCardProps {
   agent: AIAgent;
@@ -36,15 +36,23 @@ export function AgentCard({ agent, showTags = true, showDescription = true }: Ag
     <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-200 animate-fade-in">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
-          <CardTitle className="text-lg font-semibold line-clamp-2">
+          <CardTitle className="text-lg font-semibold line-clamp-2 flex-1">
             {agent.detailed_title || agent.name}
           </CardTitle>
-          <Badge 
-            variant="secondary" 
-            className={`${getPricingColor(agent.pricing)} text-xs font-medium flex-shrink-0`}
-          >
-            {agent.pricing}
-          </Badge>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <FavoriteButton 
+              agentName={agent.name} 
+              variant="ghost" 
+              size="sm"
+              className="p-2"
+            />
+            <Badge 
+              variant="secondary" 
+              className={`${getPricingColor(agent.pricing)} text-xs font-medium`}
+            >
+              {agent.pricing}
+            </Badge>
+          </div>
         </div>
       </CardHeader>
 
@@ -55,7 +63,7 @@ export function AgentCard({ agent, showTags = true, showDescription = true }: Ag
           </p>
         )}
 
-        {agent.categories.length > 0 && (
+        {agent.categories && agent.categories.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-3">
             {agent.categories.slice(0, 3).map((category) => (
               <Badge key={category} variant="outline" className="text-xs">

@@ -19,7 +19,7 @@ export function getAgentByName(name: string) {
 
 export function getAgentsByCategory(categoryName: string) {
   return getAllAgents().filter(agent => 
-    agent.categories.some(cat => 
+    agent.categories && agent.categories.some(cat => 
       cat.toLowerCase().replace(/\s+/g, '-') === categoryName.toLowerCase()
     )
   );

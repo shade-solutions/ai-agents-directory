@@ -20,7 +20,7 @@ export function filterAgentsByPricing(agents: AIAgent[], filter: PricingFilter):
 export function filterAgentsByCategory(agents: AIAgent[], category: string): AIAgent[] {
   if (!category) return agents;
   return agents.filter(agent => 
-    agent.categories.some(cat => 
+    agent.categories && agent.categories.some(cat => 
       cat.toLowerCase().replace(/\s+/g, '-') === category.toLowerCase()
     )
   );
@@ -35,7 +35,7 @@ export function searchAgents(agents: AIAgent[], query: string): AIAgent[] {
     agent.title.toLowerCase().includes(searchTerm) ||
     agent.description.toLowerCase().includes(searchTerm) ||
     agent.meta_description?.toLowerCase().includes(searchTerm) ||
-    agent.categories.some(cat => cat.toLowerCase().includes(searchTerm)) ||
+    (agent.categories && agent.categories.some(cat => cat.toLowerCase().includes(searchTerm))) ||
     agent.tags?.some(tag => tag.toLowerCase().includes(searchTerm))
   );
 }
