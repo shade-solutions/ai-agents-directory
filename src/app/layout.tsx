@@ -6,9 +6,9 @@ import { Header, Footer } from "@/components/layout";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "AI Agents Directory - Discover the Best AI Tools",
-  description: "Explore and discover the best AI agents and tools for productivity, coding, customer service, and more. Find the perfect AI solution for your needs.",
-  keywords: "AI agents, AI tools, artificial intelligence, productivity, automation, chatbots",
+  title: "AI Agents Directory - Discover the Best AI Tools & Automation Solutions",
+  description: "Explore and discover the best AI agents and tools for productivity, coding, customer service, marketing automation, content creation, and more. Find the perfect AI solution for your business needs.",
+  keywords: "AI agents, AI tools, artificial intelligence, machine learning tools, productivity apps, automation software, chatbots, virtual assistants, AI-powered tools, business automation, content creation AI, coding assistants, AI marketing tools, customer service bots, AI analytics, workflow automation, intelligent agents, AI platforms, automated solutions, smart tools, AI applications, digital assistants, AI software, machine learning platforms, AI for business, automated workflows, AI productivity tools, intelligent automation, AI-driven solutions, robotic process automation, conversational AI, AI writing tools, AI image generators, AI video tools, AI data analysis, predictive analytics, natural language processing, computer vision tools, AI development tools, no-code AI, low-code automation, AI integrations, enterprise AI, AI SaaS, AI marketplace",
   authors: [{ name: "AI Agents Directory" }],
   creator: "AI Agents Directory",
   publisher: "AI Agents Directory",
@@ -28,24 +28,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "AI Agents Directory - Discover the Best AI Tools",
-    description: "Explore and discover the best AI agents and tools for productivity, coding, customer service, and more.",
+    title: "AI Agents Directory - Discover the Best AI Tools & Automation Solutions",
+    description: "Explore and discover the best AI agents and tools for productivity, coding, customer service, marketing automation, content creation, and more. Find AI solutions that transform your workflow.",
     siteName: "AI Agents Directory",
     images: [
       {
-        url: '/api/og?title=AI%20Agents%20Directory&description=Discover%20the%20Best%20AI%20Tools',
+        url: '/api/og?title=AI%20Agents%20Directory&description=Discover%20the%20Best%20AI%20Tools%20%26%20Automation%20Solutions',
         width: 1200,
         height: 630,
-        alt: 'AI Agents Directory',
+        alt: 'AI Agents Directory - Best AI Tools and Automation Solutions',
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Agents Directory - Discover the Best AI Tools",
-    description: "Explore and discover the best AI agents and tools for productivity, coding, customer service, and more.",
+    title: "AI Agents Directory - Discover the Best AI Tools & Automation Solutions",
+    description: "Explore and discover the best AI agents and tools for productivity, coding, customer service, marketing automation, content creation, and more.",
     creator: "@aiagentsdirectory",
-    images: ['/api/og?title=AI%20Agents%20Directory&description=Discover%20the%20Best%20AI%20Tools'],
+    images: ['/api/og?title=AI%20Agents%20Directory&description=Discover%20the%20Best%20AI%20Tools%20%26%20Automation%20Solutions'],
   },
   robots: {
     index: true,

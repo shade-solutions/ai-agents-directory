@@ -29,7 +29,8 @@ export default function HomePage() {
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Explore our curated directory of {totalAgents}+ AI agents across {totalCategories} categories. 
-              From productivity tools to coding assistants, find the AI solution that transforms your workflow.
+              From productivity tools and coding assistants to customer service bots and content creation AI, 
+              find the perfect AI solution that transforms your workflow and boosts efficiency.
             </p>
           </div>
 
@@ -69,9 +70,10 @@ export default function HomePage() {
       {/* Featured Agents */}
       <section className="container space-y-8">
         <div className="text-center space-y-4">
-          <h2 className="text-3xl font-bold">Featured AI Agents</h2>
+          <h2 className="text-3xl font-bold">Featured AI Agents & Automation Tools</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Handpicked agents with detailed information and proven capabilities
+            Handpicked AI agents with detailed reviews and proven capabilities for business automation, 
+            productivity enhancement, and workflow optimization
           </p>
         </div>
 
@@ -91,9 +93,10 @@ export default function HomePage() {
       <section className="bg-muted/50 py-16">
         <div className="container space-y-8">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold">Popular Categories</h2>
+            <h2 className="text-3xl font-bold">Popular AI Categories & Use Cases</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover AI agents organized by their primary use cases and industries
+              Discover AI agents organized by industry, use case, and functionality. 
+              From marketing automation to development tools, find specialized AI solutions
             </p>
           </div>
 
@@ -142,8 +145,9 @@ export default function HomePage() {
             <Bot className="h-16 w-16 mx-auto opacity-90" />
             <h2 className="text-3xl font-bold">Ready to Transform Your Workflow?</h2>
             <p className="text-lg opacity-90 max-w-2xl mx-auto">
-              Join thousands of users who have already discovered their perfect AI agent. 
-              Start exploring our directory and find tools that will revolutionize how you work.
+              Join thousands of professionals who have already discovered their perfect AI agent. 
+              Start exploring our comprehensive directory and find AI-powered tools that will revolutionize 
+              how you work, increase productivity, and automate repetitive tasks.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link href="/agents">

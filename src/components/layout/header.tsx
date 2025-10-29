@@ -24,6 +24,7 @@ export function Header({ onSearch, searchValue = '', showSearch = false }: Heade
     { name: 'Home', href: '/' },
     { name: 'All Agents', href: '/agents' },
     { name: 'Categories', href: '/categories' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Favorites', href: '/favorites' },
     { name: 'About', href: '/about' },
   ];

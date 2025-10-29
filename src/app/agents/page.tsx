@@ -51,9 +51,10 @@ export default function AgentsPage() {
     <div className="container py-8 space-y-8">
       {/* Header */}
       <div className="space-y-4">
-        <h1 className="text-4xl font-bold">All AI Agents</h1>
+        <h1 className="text-4xl font-bold">All AI Agents & Automation Tools</h1>
         <p className="text-lg text-muted-foreground">
-          Discover {allAgents.length} AI agents across {allCategories.length} categories
+          Discover {allAgents.length} AI agents and automation tools across {allCategories.length} categories. 
+          Filter by use case, pricing, and features to find the perfect AI solution for your business needs.
         </p>
       </div>
 
@@ -65,7 +66,7 @@ export default function AgentsPage() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               type="text"
-              placeholder="Search agents by name, description, tags..."
+              placeholder="Search AI agents by name, description, use case, features..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 h-12 text-lg"

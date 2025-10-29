@@ -25,6 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
+            url: `${baseUrl}/blog`,
+            lastModified: new Date(),
+            changeFrequency: 'daily' as const,
+            priority: 0.8,
+        },
+        {
             url: `${baseUrl}/about`,
             lastModified: new Date(),
             changeFrequency: 'monthly' as const,
@@ -37,6 +43,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.3,
         },
     ];
+
+    // Blog pages
+    const blogPosts = [
+        'best-ai-agents-2025',
+        'ai-productivity-guide', 
+        'chatbot-vs-ai-agent',
+        'ai-content-creation-tools',
+        'implementing-ai-workplace',
+        'ai-coding-assistants-2025'
+    ];
+    
+    const blogPages = blogPosts.map((slug) => ({
+        url: `${baseUrl}/blog/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+    }));
 
     // Dynamic agent pages
     const agents = getAllAgents();
@@ -56,5 +79,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.6,
     }));
 
-    return [...staticPages, ...agentPages, ...categoryPages];
+    return [...staticPages, ...blogPages, ...agentPages, ...categoryPages];
 }
