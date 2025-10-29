@@ -4,6 +4,7 @@ import { ArrowLeft, ExternalLink, Tag, Users, Globe, Calendar, DollarSign } from
 import { Button, Card, CardContent, CardHeader, CardTitle, Badge, FavoriteButton, Favicon } from '@/components/ui';
 import { getAgentByName } from '@/utils/data';
 import { Metadata } from 'next';
+import { IndexNowNotifier } from '@/components/seo/IndexNowNotifier';
 
 interface AgentPageProps {
   params: Promise<{
@@ -17,17 +18,74 @@ export async function generateMetadata({ params }: AgentPageProps): Promise<Meta
   
   if (!agent) {
     return {
-      title: 'Agent Not Found',
+      title: 'AI Agent Not Found - AI Agents Directory',
+      description: 'The AI agent you are looking for could not be found. Browse our directory to discover other AI tools and agents.',
     };
   }
 
+  // Create SEO-optimized title (50-60 characters recommended)
+  const agentName = agent.detailed_title || agent.name;
+  const seoTitle = agentName.length > 45 
+    ? `${agentName.substring(0, 42)}... | AI Agent Directory`
+    : `${agentName} - AI Agent Tool & Review`;
+  
+  // Create comprehensive description (120-160 characters recommended)
+  const seoDescription = agent.meta_description || agent.description || 
+    `Discover ${agentName}, an AI agent for ${agent.categories?.[0] || 'productivity'}. ${agent.pricing} pricing. Learn features, pricing, and get started today.`;
+
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents.30tools.com';
+  const fullUrl = `${baseUrl}/agents/${name}`;
+
   return {
-    title: `${agent.detailed_title || agent.name} - AI Agent`,
-    description: agent.meta_description || agent.description,
+    title: seoTitle,
+    description: seoDescription.substring(0, 160),
+    keywords: [
+      agentName,
+      'AI agent',
+      'artificial intelligence',
+      ...(agent.categories || []),
+      ...(agent.tags?.map(t => t.replace('#', '')) || []),
+      agent.pricing.toLowerCase(),
+    ].join(', '),
+    authors: [{ name: 'AI Agents Directory' }],
+    creator: 'AI Agents Directory',
+    publisher: 'AI Agents Directory',
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     openGraph: {
-      title: `${agent.detailed_title || agent.name} - AI Agent`,
-      description: agent.meta_description || agent.description,
+      title: seoTitle,
+      description: seoDescription.substring(0, 160),
+      url: fullUrl,
+      siteName: 'AI Agents Directory',
       type: 'website',
+      images: [
+        {
+          url: `${baseUrl}/api/og?title=${encodeURIComponent(agentName)}&description=${encodeURIComponent(agent.meta_description || agent.description || '')}&category=${encodeURIComponent(agent.categories?.[0] || '')}`,
+          width: 1200,
+          height: 630,
+          alt: `${agentName} - AI Agent`,
+        },
+      ],
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: seoTitle,
+      description: seoDescription.substring(0, 160),
+      images: [`${baseUrl}/api/og?title=${encodeURIComponent(agentName)}&description=${encodeURIComponent(agent.meta_description || agent.description || '')}`],
+      creator: '@aiagentsdirectory',
+    },
+    alternates: {
+      canonical: fullUrl,
     },
   };
 }
@@ -61,8 +119,13 @@ export default async function AgentPage({ params }: AgentPageProps) {
       .trim();
   };
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents.30tools.com';
+  const currentUrl = `${baseUrl}/agents/${name}`;
+
   return (
     <div className="container py-8 space-y-8">
+      {/* IndexNow Notification */}
+      <IndexNowNotifier url={currentUrl} />
       {/* Back Button */}
       <div>
         <Link href="/agents">

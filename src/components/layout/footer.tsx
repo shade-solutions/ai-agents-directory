@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="border-t bg-background">
       <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
@@ -46,6 +46,33 @@ export function Footer() {
               <li>
                 <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
                   About
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Tools */}
+          <div>
+            <h3 className="font-semibold mb-4">Tools</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/indexnow" className="text-muted-foreground hover:text-primary transition-colors">
+                  IndexNow Submission
+                </Link>
+              </li>
+              <li>
+                <Link href="/sitemap.xml" className="text-muted-foreground hover:text-primary transition-colors">
+                  Sitemap
+                </Link>
+              </li>
+              <li>
+                <Link href="/robots.txt" className="text-muted-foreground hover:text-primary transition-colors">
+                  Robots.txt
+                </Link>
+              </li>
+              <li>
+                <Link href="/feed/rss.xml" className="text-muted-foreground hover:text-primary transition-colors">
+                  RSS Feed
                 </Link>
               </li>
             </ul>
