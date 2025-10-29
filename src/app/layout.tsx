@@ -104,6 +104,8 @@ export default function RootLayout({
             __html: JSON.stringify(websiteStructuredData),
           }}
         />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1828915420581549"
+             crossOrigin="anonymous"></script>
         <link rel="alternate" type="application/rss+xml" title="AI Agents Directory RSS Feed" href="/feed/rss.xml" />
         <link rel="icon" type="image/svg+xml" href="/icon-192.svg" />
         <meta name="theme-color" content="#000000" />
