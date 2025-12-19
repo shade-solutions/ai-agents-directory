@@ -60,9 +60,9 @@ export const metadata: Metadata = {
     },
   },
   verification: {
+    yandex: "ec0541ce2d03359a",
     // Add verification codes here when available
     // google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
     // yahoo: 'your-yahoo-verification-code',
   },
 };
