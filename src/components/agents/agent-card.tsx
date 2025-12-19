@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ExternalLink, Tag } from 'lucide-react';
 import { AIAgent } from '@/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, Badge, Button, FavoriteButton, Favicon } from '@/components/ui';
+import { getAgentRealUrl } from '@/utils/agent-url';
 
 interface AgentCardProps {
   agent: AIAgent;
@@ -38,7 +39,7 @@ export function AgentCard({ agent, showTags = true, showDescription = true }: Ag
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-start gap-3 flex-1 min-w-0">
             <Favicon 
-              url={agent.url} 
+              url={getAgentRealUrl(agent)} 
               name={agent.name}
               size={40}
               className="flex-shrink-0 mt-1"

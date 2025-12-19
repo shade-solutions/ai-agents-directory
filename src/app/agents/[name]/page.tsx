@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Tag, Users, Globe, Calendar, DollarSign } from 'lucide-react';
 import { Button, Card, CardContent, CardHeader, CardTitle, Badge, FavoriteButton, Favicon } from '@/components/ui';
 import { getAgentByName } from '@/utils/data';
+import { getAgentRealUrl } from '@/utils/agent-url';
 import { Metadata } from 'next';
 import { IndexNowNotifier } from '@/components/seo/IndexNowNotifier';
 
@@ -121,6 +122,7 @@ export default async function AgentPage({ params }: AgentPageProps) {
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ai-agents.30tools.com';
   const currentUrl = `${baseUrl}/agents/${name}`;
+  const realUrl = getAgentRealUrl(agent);
 
   return (
     <div className="container py-8 space-y-8">
@@ -142,7 +144,7 @@ export default async function AgentPage({ params }: AgentPageProps) {
           <div className="space-y-4 flex-1">
             <div className="flex items-start gap-4">
               <Favicon 
-                url={agent.url} 
+                url={realUrl} 
                 name={agent.name}
                 size={64}
                 className="flex-shrink-0 mt-2"

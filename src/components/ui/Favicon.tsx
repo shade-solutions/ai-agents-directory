@@ -6,7 +6,7 @@ import { Globe } from 'lucide-react';
 import { getFaviconUrl, getFallbackFaviconUrl } from '@/utils/favicon';
 
 interface FaviconProps {
-  url: string;
+  url: string | null | undefined;
   name: string;
   size?: number;
   className?: string;
@@ -16,6 +16,18 @@ export function Favicon({ url, name, size = 32, className = '' }: FaviconProps) 
   const [hasError, setHasError] = useState(false);
   const [hasFallbackError, setHasFallbackError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  // If no URL provided, show icon
+  if (!url) {
+    return (
+      <div 
+        className={`flex items-center justify-center bg-muted rounded border ${className}`}
+        style={{ width: size, height: size }}
+      >
+        <Globe className="h-4 w-4 text-muted-foreground" />
+      </div>
+    );
+  }
 
   // If both primary and fallback failed, show icon
   if (hasError && hasFallbackError) {
