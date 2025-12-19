@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 
@@ -104,14 +105,18 @@ export default function RootLayout({
             __html: JSON.stringify(websiteStructuredData),
           }}
         />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1828915420581549"
-             crossOrigin="anonymous"></script>
         <link rel="alternate" type="application/rss+xml" title="AI Agents Directory RSS Feed" href="/feed/rss.xml" />
         <link rel="icon" type="image/svg+xml" href="/icon-192.svg" />
         <meta name="theme-color" content="#000000" />
         <meta name="color-scheme" content="light dark" />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1828915420581549"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">
