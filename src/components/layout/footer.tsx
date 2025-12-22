@@ -56,6 +56,21 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Tools</h3>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+                  AI Agents
+                </Link>
+              </li>
+              <li>
+                <a href="https://30tools.com/" target="_blank" rel="noopener dofollow noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  30 Tools
+                </a>
+              </li>
+              <li>
+                <a href="https://unstory.live/" target="_blank" rel="noopener dofollow noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  Unstory
+                </a>
+              </li>
+              <li>
                 <Link href="/indexnow" className="text-muted-foreground hover:text-primary transition-colors">
                   IndexNow Submission
                 </Link>
@@ -141,11 +156,23 @@ export function Footer() {
             <a 
               href="https://aiagentslist.com" 
               target="_blank" 
-              rel="noopener noreferrer"
+              rel="noopener dofollow noreferrer"
               className="text-primary hover:underline"
             >
               aiagentslist.com
             </a>
+            <span className="mx-2">|</span>
+            <span>
+              Product backed by{' '}
+              <a 
+                href="https://strivio.world/" 
+                target="_blank" 
+                rel="noopener dofollow noreferrer"
+                className="text-primary hover:underline"
+              >
+                Strivio
+              </a>
+            </span>
             <a href="https://visitorbadge.io/status?path=https%3A%2F%2Fai-agents.30tools.com%2F"><img src="https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fai-agents.30tools.com%2F&countColor=%23263759&style=flat" /></a>
           </p>
         </div>
