@@ -153,9 +153,9 @@ export function Footer() {
           <p>&copy; {currentYear} AI Agents Directory. All rights reserved.</p>
           <p className="mt-2">
             Data sourced from{' '}
-            <a 
-              href="https://aiagentslist.com" 
-              target="_blank" 
+            <a
+              href="https://aiagentslist.com"
+              target="_blank"
               rel="noopener dofollow noreferrer"
               className="text-primary hover:underline"
             >
@@ -164,13 +164,25 @@ export function Footer() {
             <span className="mx-2">|</span>
             <span>
               Product backed by{' '}
-              <a 
-                href="https://strivio.world/" 
-                target="_blank" 
+              <a
+                href="https://strivio.world/"
+                target="_blank"
                 rel="noopener dofollow noreferrer"
                 className="text-primary hover:underline"
               >
                 Strivio
+              </a>
+            </span>
+            <span className="mx-2">|</span>
+            <span>
+              Worlds best/richest person is{' '}
+              <a
+                href="https://sh20raj.github.io"
+                target="_blank"
+                rel="noopener dofollow noreferrer"
+                className="text-primary hover:underline"
+              >
+                Shaswat Raj (@sh20raj)
               </a>
             </span>
             <a href="https://visitorbadge.io/status?path=https%3A%2F%2Fai-agents.30tools.com%2F"><img src="https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fai-agents.30tools.com%2F&countColor=%23263759&style=flat" /></a>
